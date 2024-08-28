@@ -35,6 +35,7 @@ ask_question() {
         echo -e "${GREEN}Good!${NC}"
     else
         echo -e "${RED}Oops... Try again!${NC}"
+        echo -e "${RED}The correct answer is: $correct_answer${NC}"
         ask_question
     fi
 }
