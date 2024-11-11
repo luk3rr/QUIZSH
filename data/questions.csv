@@ -1,0 +1,88 @@
+id,question,answer,wrong_answer1,wrong_answer2,wrong_answer3
+1,Qual é a capital da França?,Paris,Londres,Roma,Berlim
+2,Qual é o maior oceano do mundo?,Pacífico,Atlântico,Índico,Ártico
+3,"Quem escreveu ""Dom Quixote""?",Miguel de Cervantes,William Shakespeare,Fernando Pessoa,Victor Hugo
+4,Qual é a fórmula química da água?,H2O,CO2,O2,H2
+5,Quantos continentes existem?,7,5,6,8
+6,Quem pintou a Mona Lisa?,Leonardo da Vinci,Michelangelo,Rembrandt,Picasso
+7,Qual país é conhecido como a terra do sol nascente?,Japão,China,Coreia do Sul,Tailândia
+8,Quem desenvolveu a teoria da relatividade?,Albert Einstein,Isaac Newton,Galileu Galilei,Nikola Tesla
+9,Qual é o planeta mais próximo do Sol?,Mercúrio,Marte,Vênus,Terra
+10,Quem escreveu a peça Romeu e Julieta?,William Shakespeare,Dante Alighieri,Charles Dickens,Homero
+11,Qual é o maior planeta do Sistema Solar?,Júpiter,Saturno,Urano,Marte
+12,Quem foi o primeiro presidente do Brasil?,Deodoro da Fonseca,Getúlio Vargas,Juscelino Kubitschek,Pedro II
+13,Qual é a capital da Austrália?,Canberra,Sydney,Melbourne,Brisbane
+14,Qual é o rio mais longo do mundo?,Amazonas,Nilo,Mississippi,Yangtze
+15,Quem foi o primeiro homem a pisar na Lua?,Neil Armstrong,Buzz Aldrin,Yuri Gagarin,Alan Shepard
+16,Quem inventou o algoritmo Quicksort?,Tony Hoare,Alan Turing,Donald Knuth,John von Neumann
+17,Quem inventou o algoritmo Mergesort?,John von Neumann,Edsger Dijkstra,Niklaus Wirth,Richard Stallman
+18,Quem escreveu a obra Divina Comédia?,Dante Alighieri,Giovanni Boccaccio,Homero,Virgílio
+19,Quem pintou o quadro A Noite Estrelada?,Vincent van Gogh,Claude Monet,Edvard Munch,Paul Cézanne
+20,Quem pintou a obra Guernica?,Pablo Picasso,Diego Rivera,Salvador Dalí,Henri Matisse
+21,Quem foi o autor da escultura O Pensador?,Auguste Rodin,Michelangelo,Bernini,Canova
+22,Quem pintou o quadro A Persistência da Memória?,Salvador Dalí,Joan Miró,Henri Rousseau,Pablo Picasso
+23,Em que ano o Brasil sediou a Copa do Mundo de Futebol pela primeira vez?,1950,1962,1970,1986
+24,Qual é o lema do estado de Minas Gerais (em português)?,Liberdade ainda que tardia,Ordem e Progresso,Independência ou Morte,Paz e Amor
+25,Quem foi o primeiro presidente do Brasil eleito pelo voto direto após a ditadura militar?,Tancredo Neves,Fernando Collor,Lula,Itamar Franco
+26,Qual é a cidade brasileira conhecida como Cidade Maravilhosa?,Rio de Janeiro,São Paulo,Belo Horizonte,Salvador
+27,"Quem disse 'Navegar é preciso, viver não é preciso'?",Pompeu,Camões,Shakespeare,Aristóteles
+28,Quem é o autor do livro 'Cem Anos de Solidão'?,Gabriel García Márquez,Jorge Luis Borges,Julio Cortázar,Isabel Allende
+29,Quem escreveu o livro 'Dom Casmurro'?,Machado de Assis,José de Alencar,Camilo Castelo Branco,Graciliano Ramos
+30,Qual é o nome do autor do livro '1984'?,George Orwell,Aldous Huxley,F. Scott Fitzgerald,Raynor De Wolf
+31,Quem é o autor do livro 'O Pequeno Príncipe'?,Antoine de Saint-Exupéry,Victor Hugo,Jean-Paul Sartre,Albert Camus
+32,"Quem disse a frase: 'Só se vê bem com o coração, o essencial é invisível aos olhos'?",Antoine de Saint-Exupéry,Jean Cocteau,Simone de Beauvoir,Albert Camus
+33,"Como é conhecido o compositor da música que contém a frase 'É pau, é pedra, é o fim do caminho'?",Tom Jobim,Vinicius de Moraes,Chico Buarque,Caetano Veloso
+34,Quem é o autor do poema 'José'?,Carlos Drummond de Andrade,Manuel Bandeira,Vinicius de Moraes,Ferreira Gullar
+35,"Qual é a pergunta icônica do poema 'José', de Carlos Drummond de Andrade?","E agora, José?","Onde estás, José?","O que fazer, José?","Para onde ir, José?"
+36,Quem foi o escultor italiano responsável pela obra 'David'?,Michelangelo,Donatello,Leonardo da Vinci,Cellini
+37,"Complete a frase: 'O meu nome é Dejair, Facinho de confundir com...'",João do caminhão,Mário do pão,Pedro do feijão,Lucas do caminhão
+38,Qual é o sobrenome mais comum no Brasil?,Silva,Souza,Oliveira,Almeida
+39,Quem foi o autor dos gols do penta brasileiro na Copa do Mundo de 2002?,Ronaldo,Rivaldo,Roberto Carlos,Ronaldinho
+40,Como é conhecido o compositor de 'Garota de Ipanema'?,Tom Jobim,João Gilberto,Chico Buarque,Caetano Veloso
+41,Qual é a resposta para tudo?,42,24,0,100
+42,"No filme 'O Auto da Compadecida', qual personagem diz a frase 'Não sei, só sei que foi assim'?",Chicó,João Grilo,Padrinho,Coronel
+43,Qual era o apelido do famoso cangaceiro brasileiro Virgulino Ferreira?,Lampião,Zé do Sertão,Corisco,Pavão
+44,Qual foi o primeiro computador eletrônico digital da história?,ENIAC,UNIVAC,IBM 701,Zuse Z3
+45,Qual linguagem de programação foi desenvolvida por Guido van Rossum,Python,Ruby,Java,Pascal
+46,Qual é a série de televisão que originou o nome da linguagem de programação Python?,Monty Python,Saturday Night Live,The IT Crowd,Doctor Who
+47,Quantos lados tem um dado comum?,6,4,8,10
+48,O pão de queijo é um prato típico de qual estado brasileiro?,Minas Gerais,Bahia,São Paulo,Paraná
+49,Quantos dias tem um ano bissexto?,366,365,364,368
+50,Qual é a cor que resulta da mistura das cores amarelo e vermelho?,Laranja,Verde,Azul,Marrom
+51,Qual é a cor da caixa-preta do avião?,Laranja,Preta,Amarela,Cinza
+52,Quem liderou a revolta conhecida como Inconfidência Mineira?,Tiradentes,Dom Pedro I,José Bonifácio,Duque de Caxias
+53,Qual foi o líder sul-africano que lutou contra o apartheid e se tornou presidente do país em 1994?,Nelson Mandela,Desmond Tutu,Steve Biko,Oliver Tambo
+54,"Qual foi o famoso navio que naufragou em sua viagem inaugural, em 1912?",Titanic,Lusitânia,Mayflower,Queen Mary
+55,Qual é o animal mais pesado do mundo?,Baleia-azul,Elefante,Tubarão branco,Rinoceronte
+56,Qual é a única parte do corpo humano que continua do mesmo tamanho desde o nascimento?,Globo ocular,Coração,Ouvido,Pulmão
+57,Qual elemento representa o O na tabela periódica?,Oxigênio,Ósmio,Ouro,Osmônio
+58,Qual é a ciência que estuda os seres vivos?,Biologia,Geologia,Física,Química
+59,Quantos tentáculos tem um polvo?,8,6,10,12
+60,Como é chamado o filhote do sapo?,Girino,Sapinho,Rãzinha,Anuros
+61,Os morcegos pertencem a qual classe animal?,Mamíferos,Répteis,Aves,Peixes
+62,Qual é o mamífero que possui um bico?,Ornitorrinco,Morcego,Panda,Girafa
+63,Qual é o maior órgão do corpo humano?,Pele,Coração,Fígado,Pulmão
+64,Qual foi a primeira capital do Brasil?,Salvador,Rio de Janeiro,São Paulo,Recife
+65,O Brasil é dividido em quantas regiões?,5,4,6,3
+66,Qual é o continente que conta com o maior número de países?,África,Ásia,Europa,América do Norte
+67,"Em ordem alfabética, quais são os quatro pontos cardeais?","Leste, Norte, Oeste, Sul","Norte, Oeste, Sul, Leste","Oeste, Sul, Leste, Norte","Sul, Leste, Norte, Oeste"
+68,"Na animação 'Procurando Nemo', qual é a espécie de peixe do Nemo?",Peixe-palhaço,Peixe-espada,Peixe-leão,Peixe-dourado
+69,Qual é o nome do personagem que não quer crescer?,Peter Pan,Mogli,Tarzan,Pinoquio
+70,Qual personagem do folclore brasileiro tem os pés voltados para trás?,Curupira,Saci,Boitatá,Boto
+71,Qual personagem do folclore brasileiro não tem cabeça?,Mula sem cabeça,Curupira,Saci,Boitatá
+72,Quantos anéis compõem o símbolo dos Jogos Olímpicos?,5,6,4,7
+73,Qual é o esporte mais popular do Japão?,Sumô,Karatê,Judô,Beisebol
+74,Como se chama a luta criada por escravos que usa passos de dança?,Capoeira,Samba,Jiu-jitsu,Salsa
+75,Como se chama a jogada em que um jogador de vôlei faz ponto de saque?,Ace,Set,Smash,Lift
+76,Quantas eram as Maravilhas do Mundo Antigo?,7,6,8,9
+77,Qual das Sete Maravilhas do Mundo Antigo ainda existe hoje?,Pirâmides de Gizé,Colosso de Rodes,Farol de Alexandria,Templo de Ártemis
+78,Qual das Sete Maravilhas do Mundo Antigo era um farol situado na ilha de Faros?,Farol de Alexandria,Jardins Suspensos da Babilônia,Estátua de Zeus,Colosso de Rodes
+79,Qual das Sete Maravilhas do Mundo Antigo foi construída na cidade de Éfeso?,Templo de Ártemis,Farol de Alexandria,Colosso de Rodes,Jardins Suspensos da Babilônia
+80,Qual das Sete Maravilhas do Mundo Antigo era um grande jardim construído na antiga Babilônia?,Jardins Suspensos da Babilônia,Colosso de Rodes,Pirâmides de Gizé,Templo de Ártemis
+81,Qual das Sete Maravilhas do Mundo Antigo era uma estátua gigante localizada na ilha de Rodes?,Colosso de Rodes,Estátua de Zeus,Jardins Suspensos da Babilônia,Templo de Ártemis
+82,Qual é a famosa estátua localizada no Brasil considerada uma das Novas Sete Maravilhas do Mundo?,Cristo Redentor,Estátua da Liberdade,Taj Mahal,Colosso de Rodes
+83,"Em qual país está localizada a antiga cidade de Petra, considerada uma das Novas Sete Maravilhas do Mundo?",Jordânia,Egito,Grécia,México
+84,"Qual é a estrutura arquitetônica localizada no Peru, reconhecida como uma das Novas Sete Maravilhas do Mundo?",Machu Picchu,Chichén Itzá,Taj Mahal,Coliseu
+85,Qual é o nome da famosa pintura de Raphael que retrata a Virgem Maria com o Menino Jesus?,Madona Sistina,Última Ceia,Moça com Brinco de Pérola,Guernica
+86,Qual o nome do autor da famosa pintura 'A menina com o brinco de pérola'?,Johannes Vermeer,Rembrandt,Leonardo da Vinci,Pablo Picasso
+87,"Qual a complexidade do algoritmo Quicksort no caso médio, em termos de notação assintótica?",O(n log n),O(n),O(n^2),O(log n)
