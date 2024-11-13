@@ -6,11 +6,7 @@
 
 # This script is a simple quiz game that asks questions from a SQLite database.
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+. scripts/utils.sh
 
 # Calculate the time spent on the quiz
 start_time=$(date +%s)
@@ -45,21 +41,21 @@ ask_question() {
     done
 
     # Display the question and answer options
-    echo -e "${YELLOW}$question${NC}"
+    print_yellow "$question"
     for i in "${!answers[@]}"; do
         echo "$i) ${answers[$i]}"
     done
 
     # Read user's answer
-    echo -n "> Choose the correct answer (0-3): "
+    print_blue "> Choose the correct answer (0-3): " -n
     read user_choice
 
     # Check if the answer is correct
     if [ "$user_choice" -eq "$correct_index" ]; then
-        echo -e "${GREEN}Good!${NC}"
+        print_green "Good!"
     else
-        echo -e "${RED}Oops... Try again!${NC}"
-        echo -e "${RED}The correct answer was: $correct_answer${NC}"
+        print_red "Oops... Try again!"
+        print_blue "The correct answer was: $correct_answer"
         ask_question
     fi
 }

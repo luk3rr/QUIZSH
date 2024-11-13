@@ -8,15 +8,12 @@
 # text and the correct answer as arguments. The script will then ask the user
 # for the wrong answers and add the question to the database
 
-
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-NC='\033[0m'
+. scripts/utils.sh
 
 # Check if the user provided the correct number of arguments
 if [ $# -lt 1 ]; then
-    echo "Usage: $0 <question> <correct_answer>"
-    exit 1
+	echo "Usage: $0 <question> <correct_answer>"
+	exit 1
 fi
 
 # Get the question and the correct answer
@@ -26,34 +23,34 @@ correct_answer="$2"
 # Confirm the question and the answer
 echo "Question: $question"
 echo "Correct answer: $correct_answer"
-echo "Is this question correct? (y/n)"
+print_blue "Is this question correct? (y/n): " -n
 
 read confirmation
 
 if [ "$confirmation" != "y" ]; then
-    echo -e "${RED}Aborting!${NC}"
-    exit 1
+	print_red "Aborting!"
+	exit 1
 fi
 
 # Prompt for the two wrong answers
 while true; do
-    echo "Enter the first wrong answer:"
-    read wrong_answer1
-    echo "Enter the second wrong answer:"
-    read wrong_answer2
-    echo "Enter the third wrong answer:"
-    read wrong_answer3
+	echo -n "Enter the first wrong answer: "
+	read wrong_answer1
+	echo -n "Enter the second wrong answer: "
+	read wrong_answer2
+	echo -n "Enter the third wrong answer: "
+	read wrong_answer3
 
-    echo "First wrong answer: $wrong_answer1"
-    echo "Second wrong answer: $wrong_answer2"
-    echo "Third wrong answer: $wrong_answer3"
+	echo "First wrong answer: $wrong_answer1"
+	echo "Second wrong answer: $wrong_answer2"
+	echo "Third wrong answer: $wrong_answer3"
 
-    echo "Are these the wrong answers? (y/n)"
-    read confirmation
+	print_blue "Are these the wrong answers? (y/n): " -n
+	read confirmation
 
-    if [ "$confirmation" = "y" ]; then
-        break
-    fi
+	if [ "$confirmation" = "y" ]; then
+		break
+	fi
 done
 
 # Create the table if it does not exist
@@ -71,8 +68,8 @@ EOF
 exists=$(sqlite3 data/questions.db "SELECT COUNT(*) FROM questions WHERE question='$question';")
 
 if [ "$exists" -ne 0 ]; then
-    echo -e "${RED}Question already exists in the database!${NC}"
-    exit 1
+	print_red "Question already exists in the database!"
+	exit 1
 fi
 
 # Insert the question with answers into the database
@@ -83,7 +80,7 @@ EOF
 
 # Check if the question was added successfully
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Question added successfully!${NC}"
+	print_green "Question added successfully!"
 else
-    echo -e "${RED}Failed to add question!${NC}"
+	print_red "Failed to add question!"
 fi
