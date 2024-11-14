@@ -6,7 +6,7 @@
 
 # This script is a simple quiz game that asks questions from a SQLite database.
 
-. scripts/utils.sh
+. "$(dirname "$0")/scripts/utils.sh"
 
 # Calculate the time spent on the quiz
 start_time=$(date +%s)
