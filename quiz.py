@@ -8,25 +8,67 @@ import sqlite3
 import random
 import time
 import os
+import sys
+import argparse
 
-from scripts.utils import print_blue, print_red, print_green, print_yellow
+sys.path.append(os.path.join(os.path.dirname(__file__), "scripts"))
+
+from scripts.utils import (
+    print_blue,
+    print_red,
+    print_green,
+    print_yellow,
+    db_connect,
+    db_disconnect,
+)
+from scripts.add_question import add_question
+from scripts.add_category import add_category
+from scripts.settings import show_settings
+
+
+def get_filter_category():
+    """
+    Get the current filter category from settings
+    """
+    connection, cursor = db_connect()
+
+    cursor.execute("SELECT value FROM settings WHERE name = 'FILTER_BY_CATEGORY'")
+    filter_category = cursor.fetchone()
+
+    db_disconnect(connection)
+
+    if filter_category:
+        return filter_category[0]
+    return "all"  # Default is "all" if no setting is found
 
 
 def ask_question():
     """
     Ask a random question to the user
     """
-    db_path = os.path.join("data", "questions.db")
-    connection = sqlite3.connect(db_path)
-    cursor = connection.cursor()
+    connection, cursor = db_connect()
 
-    cursor.execute(
-        """
-        SELECT question, answer, wrong_answer1, wrong_answer2, wrong_answer3
-        FROM questions
-        ORDER BY RANDOM() LIMIT 1
-        """
-    )
+    filter_category = get_filter_category()
+
+    if filter_category == "all":
+        cursor.execute(
+            """
+            SELECT question, answer, wrong_answer1, wrong_answer2, wrong_answer3
+            FROM questions
+            ORDER BY RANDOM() LIMIT 1
+            """
+        )
+    else:
+        cursor.execute(
+            """
+            SELECT question, answer, wrong_answer1, wrong_answer2, wrong_answer3
+            FROM questions
+            WHERE category_id = ?
+            ORDER BY RANDOM() LIMIT 1
+            """,
+            (filter_category,),
+        )
+
     row = cursor.fetchone()
 
     if not row:
@@ -55,13 +97,54 @@ def ask_question():
         print_blue(f"The correct answer was: {correct_answer}")
         ask_question()
 
-    connection.close()
+    db_disconnect(connection)
+
+
+def main():
+    # Criação do parser de argumentos
+    parser = argparse.ArgumentParser(description="Quiz Application")
+
+    # Adicionando os parâmetros esperados
+    parser.add_argument(
+        "-gq", "--get-question", action="store_true", help="Get a random question"
+    )
+    parser.add_argument(
+        "-aq", "--add-question", action="store_true", help="Add a new question"
+    )
+    parser.add_argument(
+        "-ac", "--add-category", action="store_true", help="Add a new category"
+    )
+    parser.add_argument(
+        "-s", "--settings", action="store_true", help="Show and modify settings"
+    )
+
+    args = parser.parse_args()
+
+    if args.get_question:
+        print("Fetching a random question...")
+
+        start_time = time.time()
+        ask_question()
+        end_time = time.time()
+
+        time_spent = int(end_time - start_time)
+        print(f"Time spent: {time_spent} s")
+
+    elif args.add_question:
+        print("Adding a new question...")
+        add_question()
+
+    elif args.add_category:
+        print("Adding a new category...")
+        add_category()
+
+    elif args.settings:
+        print("Showing and modifying settings...")
+        show_settings()
+
+    else:
+        print("No valid option selected. Use --help for usage instructions.")
 
 
 if __name__ == "__main__":
-    start_time = time.time()
-    ask_question()
-    end_time = time.time()
-
-    time_spent = int(end_time - start_time)
-    print(f"Time spent: {time_spent} s")
+    main()

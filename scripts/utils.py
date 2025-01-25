@@ -4,11 +4,9 @@
 # Created on: January 25, 2025
 # Author: Lucas Araújo <araujolucas@dcc.ufmg.br>
 
-BLUE = "\033[94m"
-RED = "\033[91m"
-GREEN = "\033[92m"
-YELLOW = "\033[93m"
-END = "\033[0m"
+import sqlite3
+
+from constants import BLUE, RED, GREEN, YELLOW, END, FULL_DB_PATH
 
 
 # Utility functions for colored output
@@ -26,3 +24,19 @@ def print_green(message, end="\n"):
 
 def print_yellow(message, end="\n"):
     print(YELLOW + message + END, end=end)
+
+
+def db_connect():
+    """
+    Connect to the SQLite database
+    """
+    connection = sqlite3.connect(FULL_DB_PATH)
+    cursor = connection.cursor()
+    return connection, cursor
+
+
+def db_disconnect(connection):
+    """
+    Disconnect from the SQLite database
+    """
+    connection.close()
