@@ -26,6 +26,32 @@ def print_yellow(message, end="\n"):
     print(YELLOW + message + END, end=end)
 
 
+def prompt_with_input(prompt, end=" "):
+    """
+    Prompt the user with a message and return the input
+    """
+    print_blue("> " + prompt + ":", end=end)
+    return input().strip()
+
+
+def prompt_without_input(prompt, end=" "):
+    """
+    Prompt the user with a message and return the input
+    """
+    print_yellow(prompt, end=end)
+
+def prompt_error(prompt, end="\n"):
+    """
+    Prompt the user with a message and return the input
+    """
+    print_red(prompt, end=end)
+
+def prompt_success(prompt, end="\n"):
+    """
+    Prompt the user with a message and return the input
+    """
+    print_green(prompt, end=end)
+
 def db_connect():
     """
     Connect to the SQLite database

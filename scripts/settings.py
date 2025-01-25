@@ -4,20 +4,16 @@
 # Created on: January 25, 2025
 # Author: Lucas Araújo <araujolucas@dcc.ufmg.br>
 
-import sqlite3
-import os
-
 from utils import (
-    print_blue,
-    print_red,
-    print_green,
-    print_yellow,
     db_connect,
     db_disconnect,
+    prompt_error,
+    prompt_success,
+    prompt_with_input,
+    prompt_without_input,
 )
 from constants import (
     Setting,
-    FULL_DB_PATH,
     CREATE_SETTINGS_TABLE_QUERY,
     INSERT_DEFAULT_SETTINGS_QUERY,
 )
@@ -29,40 +25,40 @@ def set_category():
     """
     connection, cursor = db_connect()
 
-    print_yellow("Choose a category for the questions:")
+    prompt_without_input("Choose a category for the questions:", end="\n")
 
     cursor.execute("SELECT id, name FROM category")
     categories = cursor.fetchall()
+
+    db_disconnect(connection)
 
     while True:
         if categories:
             for category in categories:
                 print(f"{category[0]}) {category[1]}")
 
-            # O usuario deve digitar o id da categoria para mostrar questoes apenas daquela categoria
-            # Se ele digitar 'all', todas as questoes serao mostradas
-            print_blue(
-                "> Choose a category or type 'all' to set all questions as possible: ",
-                end="",
+            # If the user types 'all', all questions will be shown.
+            # If the user types a category id, only questions from that category will
+            # be shown
+            category_id = prompt_with_input(
+                "Choose a category or type 'all' to set all questions as possible",
             )
-            category_id = input()
 
             if category_id.isdigit():
-                print_green("Category {} set successfully!".format(category_id))
+                prompt_success(f"Succesfully set category to {category_id}")
+                prompt_success("Questions will be filtered by category")
                 return category_id
 
             elif category_id.lower() == "all":
-                print_green("All questions will be asked!")
+                prompt_success("All questions will be asked!")
                 return "all"
 
             else:
-                print_red("Invalid category id!")
+                prompt_error("Invalid category id!")
                 continue
         else:
-            print_red("No categories available")
+            prompt_error("No categories available")
             return None
-
-    db_disconnect(connection)
 
 
 def show_settings():
@@ -78,17 +74,15 @@ def show_settings():
     cursor.execute("SELECT id, name, value FROM settings")
     settings = cursor.fetchall()
 
-    print_yellow("Current settings:")
+    prompt_without_input("Current settings:", end="\n")
     for setting in settings:
         print(f"{setting[0]}): {setting[1]} = {setting[2]}")
 
-    print_blue(
-        "> What setting would you like to change? (Enter ID or 'exit' to quit): ",
-        end="",
+    user_choice = prompt_with_input(
+        "What setting would you like to change? (Enter ID or 'q' to quit)"
     )
-    user_choice = input()
 
-    if user_choice.lower() == "exit":
+    if user_choice.lower() == "q":
         return
 
     if user_choice.isdigit():
@@ -99,7 +93,7 @@ def show_settings():
         if setting:
             setting_name, setting_value = setting
 
-            print_yellow(f"Current value for {setting_name}: {setting_value}")
+            prompt_without_input(f"Current value for {setting_name}: {setting_value}", end="\n")
 
             if setting_id == Setting.FILTER_BY_CATEGORY_ID_ON_TABLE.value:
                 new_value = set_category()
@@ -110,14 +104,15 @@ def show_settings():
                         (new_value, setting_id),
                     )
                     connection.commit()
-                    print_green(f"Setting '{setting_name}' updated successfully!")
+                    prompt_success(f"Setting '{setting_name}' updated successfully!")
+
                 else:
-                    print_red("Invalid new value")
+                    prompt_error("Invalid new value")
         else:
-            print_red("Invalid setting ID")
+            prompt_error("Invalid setting ID")
 
     else:
-        print_red("Invalid input")
+        prompt_error("Invalid input")
 
     db_disconnect(connection)
 

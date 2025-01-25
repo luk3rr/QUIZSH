@@ -4,7 +4,6 @@
 # Created on: January 25, 2025
 # Author: Lucas Araújo <araujolucas@dcc.ufmg.br>
 
-import sqlite3
 import random
 import time
 import os
@@ -14,12 +13,12 @@ import argparse
 sys.path.append(os.path.join(os.path.dirname(__file__), "scripts"))
 
 from scripts.utils import (
-    print_blue,
-    print_red,
-    print_green,
-    print_yellow,
     db_connect,
     db_disconnect,
+    prompt_error,
+    prompt_success,
+    prompt_with_input,
+    prompt_without_input,
 )
 from scripts.add_question import add_question
 from scripts.add_category import add_category
@@ -72,7 +71,7 @@ def ask_question():
     row = cursor.fetchone()
 
     if not row:
-        print_red("No questions available in the database.")
+        prompt_error("No questions available in the database")
         connection.close()
         return
 
@@ -83,18 +82,19 @@ def ask_question():
 
     correct_index = answers.index(correct_answer)
 
-    print_yellow(question)
+    prompt_without_input(question, end="\n")
+
     for i, answer in enumerate(answers):
         print(f"{i}) {answer}")
 
-    print_blue("> Choose the correct answer (0-3): ", end="")
-    user_choice = input()
+    user_choice = prompt_with_input("Choose the correct answer (0-3)")
 
     if user_choice.isdigit() and int(user_choice) == correct_index:
-        print_green("Good!")
+        prompt_success("Good!")
     else:
-        print_red("Oops... Try again!")
-        print_blue(f"The correct answer was: {correct_answer}")
+        prompt_error("Oops... Try again!")
+        prompt_without_input(f"The correct answer was:")
+        print(f"{correct_index}) {correct_answer}")
         ask_question()
 
     db_disconnect(connection)

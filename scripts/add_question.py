@@ -8,10 +8,9 @@ import sqlite3
 import subprocess
 import sys
 
-from utils import print_blue, print_red, print_green, db_connect, db_disconnect
+from utils import prompt_success, prompt_with_input, prompt_without_input, prompt_error, db_connect, db_disconnect
 from constants import (
     ADD_CATEGORY_SCRIPT,
-    LOCAL_DB_PATH,
     CREATE_CATEGORY_TABLE_QUERY,
     CREATE_QUESTIONS_TABLE_QUERY,
     PYTHON_INTERPRETER,
@@ -24,33 +23,37 @@ def add_question():
     """
     # Get the question and the correct answer
 
-    print_blue("> Enter the question: ", end="")
-    question = input().strip()
+    question = prompt_with_input("Enter the question")
+    correct_answer = prompt_with_input("Enter the correct answer")
 
-    print_blue("> Enter the correct answer: ", end="")
-    correct_answer = input().strip()
+    prompt_without_input("Question:")
+    print(question)
 
-    print(f"Question: {question}")
-    print(f"Correct answer: {correct_answer}")
-    print_blue("Is this question correct? (y/n): ", end="")
-    confirmation = input()
+    prompt_without_input("Correct answer:")
+    print(correct_answer)
+
+    confirmation = prompt_with_input("Is this question correct? (y/n)")
 
     if confirmation.lower() != "y":
-        print_red("Aborting!")
+        prompt_error("Aborting!")
         sys.exit(1)
 
     # Prompt for the wrong answers
     while True:
-        wrong_answer1 = input("Enter the first wrong answer: ")
-        wrong_answer2 = input("Enter the second wrong answer: ")
-        wrong_answer3 = input("Enter the third wrong answer: ")
+        wrong_answer1 = prompt_with_input("Enter the first wrong answer")
+        wrong_answer2 = prompt_with_input("Enter the second wrong answer")
+        wrong_answer3 = prompt_with_input("Enter the third wrong answer")
 
-        print(f"First wrong answer: {wrong_answer1}")
-        print(f"Second wrong answer: {wrong_answer2}")
-        print(f"Third wrong answer: {wrong_answer3}")
+        prompt_without_input("First wrong answer:")
+        print(wrong_answer1)
 
-        print_blue("Are these the wrong answers? (y/n): ", end="")
-        confirmation = input()
+        prompt_without_input("Second wrong answer:")
+        print(wrong_answer2)
+
+        prompt_without_input("Third wrong answer:")
+        print(wrong_answer3)
+
+        confirmation = prompt_with_input("Are these the wrong answers? (y/n)")
 
         if confirmation.lower() == "y":
             break
@@ -62,7 +65,8 @@ def add_question():
     cursor.execute(CREATE_QUESTIONS_TABLE_QUERY)
 
     while True:
-        print("Available categories:")
+        prompt_without_input("Available categories:", end="\n")
+
         try:
             cursor.execute("SELECT id, name FROM category")
             categories = cursor.fetchall()
@@ -71,14 +75,10 @@ def add_question():
                 for category in categories:
                     print(f"{category[0]}) {category[1]}")
 
-                print_blue(
-                    "Enter the category ID, or type 'new' to create a new category: ",
-                    end="",
-                )
-                choice = input()
+                choice = prompt_with_input("Enter the category ID, or type 'new' to create a new category")
 
                 if choice.lower() == "new":
-                    print_blue("Launching category creation script...")
+                    prompt_without_input("Launching category creation script...")
                     subprocess.run([PYTHON_INTERPRETER, ADD_CATEGORY_SCRIPT])
                     continue
 
@@ -88,18 +88,20 @@ def add_question():
                     cursor.execute("SELECT name FROM category WHERE id = ?", (choice,))
                     category_name = cursor.fetchone()[0]
                     category_id = choice
-                    print_green(f"Category '{category_name}' selected")
+                    prompt_success(f"Category {category_name} selected successfully!")
                     break
+
                 else:
-                    print_red("Invalid input. Try again")
+                    prompt_error("Invalid input. Try again")
                     continue
 
             else:
-                print_red("No categories available. Please add a category first")
+                prompt_error("No categories available. Please add a category first")
                 subprocess.run([PYTHON_INTERPRETER, ADD_CATEGORY_SCRIPT])
                 continue
+
         except sqlite3.Error as e:
-            print_red(f"Database error: {e}")
+            prompt_error(f"Database error: {e}")
             sys.exit(1)
 
     # Check if the question already exists
@@ -107,7 +109,7 @@ def add_question():
     exists = cursor.fetchone()[0]
 
     if exists > 0:
-        print_red("Question already exists in the database!")
+        prompt_error("Question already exists in the database!")
         connection.close()
         sys.exit(1)
 
@@ -128,9 +130,11 @@ def add_question():
             ),
         )
         connection.commit()
-        print_green("Question added successfully!")
+        prompt_success("Question added successfully!")
+
     except sqlite3.Error as e:
-        print_red(f"Failed to add question: {e}")
+        prompt_success(f"Failed to add question: {e}")
+
     finally:
         db_disconnect(connection)
 

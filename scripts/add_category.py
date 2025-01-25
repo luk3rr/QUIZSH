@@ -5,10 +5,17 @@
 # Author: Lucas Araújo <araujolucas@dcc.ufmg.br>
 
 import sqlite3
-import os
 
-from utils import print_blue, print_red, print_green, db_connect, db_disconnect
-from constants import FULL_DB_PATH, CREATE_CATEGORY_TABLE_QUERY
+from utils import (
+    prompt_success,
+    prompt_with_input,
+    prompt_without_input,
+    prompt_error,
+    db_connect,
+    db_disconnect,
+)
+from constants import CREATE_CATEGORY_TABLE_QUERY
+
 
 def show_categories():
     """
@@ -20,11 +27,13 @@ def show_categories():
     cursor.execute("SELECT id, name FROM category")
     categories = cursor.fetchall()
 
-    print_blue("Current categories:")
+    prompt_without_input("Current categories:", end="\n")
+
     for category in categories:
         print(f"{category[0]}) {category[1]}")
 
     db_disconnect(connection)
+
 
 def add_category():
     """
@@ -37,22 +46,24 @@ def add_category():
 
         show_categories()
 
-        print_blue("> Enter the name of the new category: ", end="")
-        new_category = input().strip()
+        new_category = prompt_with_input("Enter the name of the new category")
 
         if not new_category:
-            print_red("Category name cannot be empty.")
+            prompt_error("Category name cannot be empty")
             return
 
         try:
             cursor.execute("INSERT INTO category (name) VALUES (?)", (new_category,))
             connection.commit()
-            print_green(f"Category '{new_category}' added successfully!")
+
+            prompt_success(f"Category '{new_category}' added successfully!")
+
         except sqlite3.IntegrityError:
-            print_red(f"The category '{new_category}' already exists.")
+            prompt_error(f"Category '{new_category}' already exists")
 
     except sqlite3.Error as e:
-        print_red(f"Database error: {e}")
+        prompt_error("Failed to add category. An database error occurred: {e}")
+
     finally:
         db_disconnect(connection)
 
