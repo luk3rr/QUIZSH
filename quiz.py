@@ -101,10 +101,8 @@ def ask_question():
 
 
 def main():
-    # Criação do parser de argumentos
     parser = argparse.ArgumentParser(description="Quiz Application")
 
-    # Adicionando os parâmetros esperados
     parser.add_argument(
         "-gq", "--get-question", action="store_true", help="Get a random question"
     )
@@ -121,8 +119,6 @@ def main():
     args = parser.parse_args()
 
     if args.get_question:
-        print("Fetching a random question...")
-
         start_time = time.time()
         ask_question()
         end_time = time.time()

@@ -40,17 +40,20 @@ def prompt_without_input(prompt, end=" "):
     """
     print_yellow(prompt, end=end)
 
+
 def prompt_error(prompt, end="\n"):
     """
     Prompt the user with a message and return the input
     """
     print_red(prompt, end=end)
 
+
 def prompt_success(prompt, end="\n"):
     """
     Prompt the user with a message and return the input
     """
     print_green(prompt, end=end)
+
 
 def db_connect():
     """
