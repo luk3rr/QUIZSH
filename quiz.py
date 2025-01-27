@@ -54,7 +54,6 @@ def ask_question():
             """
             SELECT question, answer, wrong_answer1, wrong_answer2, wrong_answer3
             FROM questions
-            ORDER BY RANDOM() LIMIT 1
             """
         )
     else:
@@ -63,17 +62,18 @@ def ask_question():
             SELECT question, answer, wrong_answer1, wrong_answer2, wrong_answer3
             FROM questions
             WHERE category_id = ?
-            ORDER BY RANDOM() LIMIT 1
             """,
             (filter_category,),
         )
 
-    row = cursor.fetchone()
+    rows = cursor.fetchall()
 
-    if not row:
+    if not rows:
         prompt_error("No questions available in the database")
         connection.close()
         return
+
+    row = random.choice(rows)
 
     question, correct_answer, wrong_answer1, wrong_answer2, wrong_answer3 = row
 
